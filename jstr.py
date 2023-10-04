@@ -15,13 +15,13 @@ def run_jstr(df):
     # cwf->kt reference table (this is an output from preprocessing step 0.1)
     cwf_kt = pd.read_csv("data_processed/cwf_kt.csv")
     # Read SFw Database - Job Role (Key) (To extract Average TSC Levels - use it to filter unrealistic adjacent pairs)
-    sfw_df = pd.read_excel('data_raw\SFw Database_27Jul_2022.xlsx', sheet_name='Job Role (Key)')
+    sfw_df = pd.read_excel('data_raw/SFw Database_27Jul_2022.xlsx', sheet_name='Job Role (Key)')
     # SSOC->SFw Job Role Reference Table
-    df_ssoc = pd.read_excel('data_raw\SFw Database_27Jul_2022.xlsx', sheet_name='Job Role_SSOC')
+    df_ssoc = pd.read_excel('data_raw/SFw Database_27Jul_2022.xlsx', sheet_name='Job Role_SSOC')
     # SSOC->Wages Reference Table
-    df_salary = pd.read_csv('data_raw\wages_2022.csv')
+    df_salary = pd.read_csv('data_raw/wages_2022.csv')
     # SSOC->Demand Reference Table
-    df_demand = pd.read_csv('data_raw\jobdemand_2022.csv')
+    df_demand = pd.read_csv('data_raw/jobdemand_2022.csv')
     # 11K->2K Skills SEA Mapping Table
     df_sea = pd.read_excel("data_raw/2k_to_11k_mapping_include_skills_tag_20220914_SIPD_V02.xlsx", sheet_name="2k_to_11k_mapping_include_skill")
     # SFw Job Role->TSC Mapping Table
