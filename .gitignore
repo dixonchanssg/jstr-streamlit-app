@@ -1,0 +1,7 @@
+# Python-related
+__pycache__/
+*.pyc
+
+# Directories to be excluded
+.ipynb_checkpoints/
+archives/
