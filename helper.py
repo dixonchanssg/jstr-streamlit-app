@@ -17,7 +17,7 @@ def generate_similar_cwf_kt(index, job_title, job_desc):
     #model = SentenceTransformer('bert-base-nli-mean-tokens')
     model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
     embeddings = np.load("data_processed/embeddings_distilbert.npy")
-    current_embeddings = model.encode([job_desc])
+    current_embeddings = model.encode([job_desc], batch_size=8)
     # Append the current embedding to the saved embeddings
     embeddings = np.vstack((embeddings, current_embeddings))
     pairwise = pd.DataFrame(cosine_similarity(embeddings))
