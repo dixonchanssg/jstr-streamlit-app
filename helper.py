@@ -14,8 +14,9 @@ def generate_similar_cwf_kt(index, job_title, job_desc):
     # Add a new row with the neccessary values required
     df.loc[len(df)] = [df.iloc[:, 0].max() + 1, 99999, "NA", job_desc]
     df['Function ID'] = df['Function ID'].astype(int)
-    model = SentenceTransformer('bert-base-nli-mean-tokens', batch_size=16)
-    embeddings = np.load("data_processed/embeddings.npy")
+    #model = SentenceTransformer('bert-base-nli-mean-tokens')
+    model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
+    embeddings = np.load("data_processed/embeddings_distilbert.npy")
     current_embeddings = model.encode([job_desc])
     # Append the current embedding to the saved embeddings
     embeddings = np.vstack((embeddings, current_embeddings))
