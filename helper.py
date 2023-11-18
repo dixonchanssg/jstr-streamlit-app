@@ -15,8 +15,8 @@ def generate_similar_cwf_kt(index, job_title, job_desc):
     df.loc[len(df)] = [df.iloc[:, 0].max() + 1, 99999, "NA", job_desc]
     df['Function ID'] = df['Function ID'].astype(int)
     #model = SentenceTransformer('bert-base-nli-mean-tokens')
-    model = SentenceTransformer('distilbert-base-nli-stsb-mean-tokens')
-    embeddings = np.load("data_processed/embeddings_distilbert.npy")
+    model = SentenceTransformer('all-mpnet-base-v2')
+    embeddings = np.load("data_processed/mpnet_embeddings.npy")
     current_embeddings = model.encode([job_desc], batch_size=8)
     # Append the current embedding to the saved embeddings
     embeddings = np.vstack((embeddings, current_embeddings))
@@ -32,10 +32,9 @@ def generate_similar_cwf_kt(index, job_title, job_desc):
     df_output = df_sorted.loc[df_sorted['source_id'] == pos]
     #choose top 20 cwfs which are most similar to sample job posting
     df_output = df_output.loc[df_output['rank'] < 21]
-    df1 = pd.merge(df_output, df[['index', 'Function ID']], left_on='target_id', right_on='index', how ='left')
-    df2 = pd.merge(df1, df[['Function ID', 'Critical Work Function', 'Key Tasks']], left_on='Function ID', right_on='Function ID', how ='left').drop(['index', 'Function ID'], axis=1)
-    df2 = df2.sort_values(by=['rank'])
-    return df2
+    df1 = pd.merge(df_output, df[['index', 'Function ID', 'Critical Work Function', 'Key Tasks']], left_on='target_id', right_on='index', how ='left').drop(['index', 'Function ID'], axis=1)
+    df1 = df1.sort_values(by=['rank'])
+    return df1
 
 # Add raw job description for the uploaded job roles in 'cwf_kt.csv'
 # find most similar cwf clusters for each job roles and stores output to dataframe list
