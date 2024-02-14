@@ -46,13 +46,13 @@ def run_jstr(df):
     all_cwf_kt_df = []
 
     # Loop through each row and call generate_similar_cwf_kt() for the value in the first column
-    for index, row in df.iterrows():
+    for row in df.itertuples():
         # Check if job_title is NaN
         # if pd.isna(row.iloc[0]):
         #    break
-        job_title = row.iloc[0]
-        job_desc = row.iloc[1]
-        result_df = hp.generate_similar_cwf_kt(index, job_title, job_desc)
+        job_title = row[1]
+        job_desc = row[2]
+        result_df = hp.generate_similar_cwf_kt(job_title, job_desc)
         all_cwf_kt_df.append(result_df)
 
 

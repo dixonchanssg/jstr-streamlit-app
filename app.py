@@ -20,7 +20,7 @@ def main():
 
     if uploaded_file is not None:
         # Read uploaded CSV file
-        df = pd.read_csv(uploaded_file)
+        df = pd.read_csv(uploaded_file, encoding='utf-8', errors='ignore')
         st.write("Uploaded File:")
         st.dataframe(df)
 

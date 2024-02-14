@@ -9,7 +9,7 @@ from sentence_transformers import SentenceTransformer
 
 # generate_similar_cwf_kt
 # read in job description from uploaded dataset and find top 15 closest CWF clusters for each of the job role
-def generate_similar_cwf_kt(index, job_title, job_desc):
+def generate_similar_cwf_kt(job_title, job_desc):
     df = pd.read_csv("data_processed/cwf_kt.csv")    
     # Add a new row with the neccessary values required
     df.loc[len(df)] = [df.iloc[:, 0].max() + 1, 99999, "NA", job_desc]
